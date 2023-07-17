@@ -1,24 +1,21 @@
 import { useState } from "react";
-import ProductItem from "../Components/ProductItem";
 import products from "../data/products";
+import Cart from "../Components/Cart";
+import ShoppingList from "../Components/ShoppingList";
+
 export default function Home(){
+    const [cart, updateCart] = useState([])
     
     return(
         <>
-            <div className="m-8 text-2xl">
-            
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
-                    {
-                        products.map(product => 
-                            <ProductItem 
-                                product={product} 
-                                key={product.id}
-                                
-                                />
-                                )
-                    }
-        
+            <div className=" text-2xl">
+                <div className="grid grid-cols-5 ">
+                    <Cart cart={cart} updateCart={updateCart} />
+                    <div className="col-span-4 p-4">
+                        <ShoppingList products={products}  cart={cart} updateCart={updateCart} />
+                    </div>
                 </div>
+                
             </div>
             
         </>
